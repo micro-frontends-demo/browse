@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const CardBox = styled.div`
+const Card = styled.div`
   display: inline-block;
   width: 100%;
   max-width: 350px;
+  margin: 0 5px;
 `;
 
 const CardTitleRow = styled.div`
@@ -31,14 +32,14 @@ const Description = styled.p`
 `;
 
 const RestaurantCard = ({ restaurant }) => (
-  <CardBox>
+  <Card>
     <CardTitleRow>
       <CardTitle>{restaurant.name}</CardTitle>
       <PriceRange>{restaurant.priceRange}</PriceRange>
     </CardTitleRow>
     <Img src={restaurant.imageSrc} alt={restaurant.imageDescription} />
     <Description>{restaurant.description}</Description>
-  </CardBox>
+  </Card>
 );
 
 RestaurantCard.propTypes = {
