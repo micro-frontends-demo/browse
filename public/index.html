@@ -9,14 +9,26 @@
     <title>Browse Restaurants</title>
     <style type="text/css">
       html, body {
-        margin: 0;
-        padding: 0;
         width: 100%;
         height: 100%;
+        margin: 0;
+        padding: 0;
         font-family: 'Yanone Kaffeesatz', sans-serif;
       }
+
       * {
         box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f3f3de;
+        color: #2b2318;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
       }
     </style>
   </head>
@@ -24,6 +36,6 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="container"></div>
+    <main id="container"></main>
   </body>
 </html>
