@@ -80,7 +80,7 @@ const restaurants = [
     priceRange: '$$$',
     imageSrc: sushi,
     imageDescription: 'A photo of sushi and sashimi',
-    description: 'Only the freshest sushi and tastiest katsu',
+    description: 'Only the freshest fish and tastiest katsu',
   },
   {
     id: '10',
