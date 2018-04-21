@@ -37,7 +37,7 @@ const restaurants = [
   {
     id: '4',
     name: 'Super satay skewers',
-    priceRange: '$',
+    priceRange: '$$',
     imageSrc: satay,
     imageDescription: 'A photo of some satay skewers with sauce',
     description: "Satay so good it'll save the world",

@@ -29,6 +29,7 @@ const Img = styled.img`
 
 const Description = styled.p`
   margin-top: 0;
+  font-size: 20px;
 `;
 
 const RestaurantCard = ({ restaurant }) => (

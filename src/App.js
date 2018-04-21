@@ -17,10 +17,24 @@ const CardContainer = styled.div`
   justify-content: space-around;
 `;
 
+const defaultFilters = {
+  nameFilter: '',
+  priceRangeFilter: {
+    $: false,
+    $$: false,
+    $$$: false,
+    $$$$: false,
+  },
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { restaurants: [], loading: true, nameFilter: '', priceRangeFilter: '' };
+    this.state = {
+      restaurants: [],
+      loading: true,
+      ...defaultFilters,
+    };
   }
 
   componentDidMount() {
@@ -29,14 +43,28 @@ class App extends React.Component {
     });
   }
 
-  setFilter = field => value => this.setState({ [field]: value });
+  setNameFilter = value => this.setState({ nameFilter: value });
+  setPriceRangeFilter = range => checked => {
+    this.setState(({ priceRangeFilter }) => ({
+      priceRangeFilter: {
+        ...priceRangeFilter,
+        [range]: checked,
+      },
+    }));
+  };
+  resetAllFilters = () => this.setState(defaultFilters);
 
   render() {
     if (this.state.loading) {
       return <Loading />;
     }
 
-    const filteredRestaurants = this.state.restaurants.filter(
+    const anyPriceSelected = Object.values(this.state.priceRangeFilter).some(f => f);
+    const restaurantsInPriceRange = anyPriceSelected
+      ? this.state.restaurants.filter(r => this.state.priceRangeFilter[r.priceRange])
+      : this.state.restaurants;
+
+    const filteredRestaurants = restaurantsInPriceRange.filter(
       r =>
         r.name.toLowerCase().includes(this.state.nameFilter.toLowerCase()) ||
         r.description.toLowerCase().includes(this.state.nameFilter.toLowerCase()),
@@ -47,8 +75,9 @@ class App extends React.Component {
         <Filters
           name={this.state.nameFilter}
           priceRange={this.state.priceRangeFilter}
-          setNameFilter={this.setFilter('nameFilter')}
-          setPriceRangeFilter={this.setFilter('priceRangeFilter')}
+          setNameFilter={this.setNameFilter}
+          setPriceRangeFilter={this.setPriceRangeFilter}
+          resetAll={this.resetAllFilters}
         />
         <CardContainer>
           {filteredRestaurants.map(restaurant => (

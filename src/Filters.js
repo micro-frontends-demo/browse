@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from './components/Button';
 import TextInput from './components/TextInput';
+import Checkbox from './components/Checkbox';
+import Button from './components/Button';
 
 const FilterRow = styled.div`
   padding-left: 25px;
@@ -9,14 +10,21 @@ const FilterRow = styled.div`
   margin-bottom: 10px;
 `;
 
-const NameFilter = styled(TextInput)`
-  margin-right: 20px;
+const PriceRangeFields = styled.span`
+  margin: 0 20px;
 `;
 
-const Filters = ({ name, priceRange, setNameFilter, setPriceRangeFilter }) => (
+const Filters = ({ name, priceRange, setNameFilter, setPriceRangeFilter, resetAll }) => (
   <FilterRow>
-    <NameFilter label="Name:" value={name} onChange={setNameFilter} />
-    <Button onClick={() => setNameFilter('')}>Clear</Button>
+    <TextInput label="Search:" value={name} onChange={setNameFilter} />
+    <PriceRangeFields>
+      Price range:
+      <Checkbox label="$" checked={priceRange.$} onChange={setPriceRangeFilter('$')} />
+      <Checkbox label="$$" checked={priceRange.$$} onChange={setPriceRangeFilter('$$')} />
+      <Checkbox label="$$$" checked={priceRange.$$$} onChange={setPriceRangeFilter('$$$')} />
+      <Checkbox label="$$$$" checked={priceRange.$$$$} onChange={setPriceRangeFilter('$$$$')} />
+    </PriceRangeFields>
+    <Button onClick={resetAll}>Clear</Button>
   </FilterRow>
 );
 
