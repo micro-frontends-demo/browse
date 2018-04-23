@@ -14,5 +14,15 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <main id="container"></main>
+    <script type="text/javascript">
+      function tryRender() {
+        if (window.renderBrowseMicrofrontend) {
+          window.renderBrowseMicrofrontend('container');
+        } else {
+          setTimeout(tryRender, 100);
+        }
+      }
+      tryRender();
+    </script>
   </body>
 </html>

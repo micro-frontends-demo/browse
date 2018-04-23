@@ -3,5 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('container'));
-registerServiceWorker();
+window.renderBrowseMicrofrontend = containerId => {
+  ReactDOM.render(<App />, document.getElementById(containerId));
+  registerServiceWorker();
+};
