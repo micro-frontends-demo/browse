@@ -1,13 +1,13 @@
-const burger = 'http://localhost:5001/images/1-burger.jpg';
-const chickenRice = 'http://localhost:5001/images/2-chicken-rice.jpg';
-const pizza = 'http://localhost:5001/images/3-pizza.jpg';
-const satay = 'http://localhost:5001/images/4-satay.jpg';
-const curry = 'http://localhost:5001/images/5-curry.jpg';
-const sandwich = 'http://localhost:5001/images/6-sandwich.jpg';
-const paella = 'http://localhost:5001/images/7-paella.jpg';
-const friedChicken = 'http://localhost:5001/images/8-fried-chicken.jpg';
-const sushi = 'http://localhost:5001/images/9-sushi.jpg';
-const fishNChips = 'http://localhost:5001/images/10-fish-n-chips.jpg';
+const burger = 'http://localhost:5000/images/1-burger.jpg';
+const chickenRice = 'http://localhost:5000/images/2-chicken-rice.jpg';
+const pizza = 'http://localhost:5000/images/3-pizza.jpg';
+const satay = 'http://localhost:5000/images/4-satay.jpg';
+const curry = 'http://localhost:5000/images/5-curry.jpg';
+const sandwich = 'http://localhost:5000/images/6-sandwich.jpg';
+const paella = 'http://localhost:5000/images/7-paella.jpg';
+const friedChicken = 'http://localhost:5000/images/8-fried-chicken.jpg';
+const sushi = 'http://localhost:5000/images/9-sushi.jpg';
+const fishNChips = 'http://localhost:5000/images/10-fish-n-chips.jpg';
 
 const restaurants = [
   {
