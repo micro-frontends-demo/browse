@@ -1,6 +1,11 @@
 import React from 'react';
+import { Link as RRLink } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
+const Link = styled(RRLink)`
+  color: inherit;
+`;
 
 const Card = styled.div`
   display: inline-block;
@@ -34,17 +39,20 @@ const Description = styled.p`
 
 const RestaurantCard = ({ restaurant }) => (
   <Card>
-    <CardTitleRow>
-      <CardTitle>{restaurant.name}</CardTitle>
-      <PriceRange>{restaurant.priceRange}</PriceRange>
-    </CardTitleRow>
-    <Img src={restaurant.imageSrc} alt={restaurant.imageDescription} />
-    <Description>{restaurant.description}</Description>
+    <Link to={`/restaurant/${restaurant.id}`}>
+      <CardTitleRow>
+        <CardTitle>{restaurant.name}</CardTitle>
+        <PriceRange>{restaurant.priceRange}</PriceRange>
+      </CardTitleRow>
+      <Img src={restaurant.imageSrc} alt={restaurant.imageDescription} />
+      <Description>{restaurant.description}</Description>
+    </Link>
   </Card>
 );
 
 RestaurantCard.propTypes = {
   restaurant: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     priceRange: PropTypes.string.isRequired,
     imageSrc: PropTypes.string.isRequired,

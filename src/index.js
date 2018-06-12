@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-window.renderBrowse = containerId => {
-  ReactDOM.render(<App />, document.getElementById(containerId));
+window.renderBrowse = (containerId, history) => {
+  ReactDOM.render(<App history={history} />, document.getElementById(containerId));
   registerServiceWorker();
 };

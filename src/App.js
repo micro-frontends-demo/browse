@@ -1,4 +1,6 @@
 import React from 'react';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import styled from 'styled-components';
 import Loading from './Loading';
 import Filters from './Filters';
@@ -71,20 +73,22 @@ class App extends React.Component {
     );
 
     return (
-      <MainColumn>
-        <Filters
-          name={this.state.nameFilter}
-          priceRange={this.state.priceRangeFilter}
-          setNameFilter={this.setNameFilter}
-          setPriceRangeFilter={this.setPriceRangeFilter}
-          resetAll={this.resetAllFilters}
-        />
-        <CardContainer>
-          {filteredRestaurants.map(restaurant => (
-            <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-          ))}
-        </CardContainer>
-      </MainColumn>
+      <Router history={this.props.history || createBrowserHistory()}>
+        <MainColumn>
+          <Filters
+            name={this.state.nameFilter}
+            priceRange={this.state.priceRangeFilter}
+            setNameFilter={this.setNameFilter}
+            setPriceRangeFilter={this.setPriceRangeFilter}
+            resetAll={this.resetAllFilters}
+          />
+          <CardContainer>
+            {filteredRestaurants.map(restaurant => (
+              <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+            ))}
+          </CardContainer>
+        </MainColumn>
+      </Router>
     );
   }
 }
