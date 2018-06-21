@@ -29,6 +29,8 @@ const defaultFilters = {
   },
 };
 
+const defaultHistory = createBrowserHistory();
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -73,7 +75,7 @@ class App extends React.Component {
     );
 
     return (
-      <Router history={this.props.history || createBrowserHistory()}>
+      <Router history={this.props.history || defaultHistory}>
         <MainColumn>
           <Filters
             name={this.state.nameFilter}
