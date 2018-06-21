@@ -4,19 +4,13 @@ import { createBrowserHistory } from 'history';
 import styled from 'styled-components';
 import Loading from './Loading';
 import Filters from './Filters';
-import RestaurantCard from './RestaurantCard';
+import RestaurantList from './RestaurantList';
 import getRestaurants from './data/restaurants';
 
 const MainColumn = styled.div`
   max-width: 1150px;
   margin: 0 auto;
   padding: 20px;
-`;
-
-const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
 `;
 
 const defaultFilters = {
@@ -48,6 +42,7 @@ class App extends React.Component {
   }
 
   setNameFilter = value => this.setState({ nameFilter: value });
+
   setPriceRangeFilter = range => checked => {
     this.setState(({ priceRangeFilter }) => ({
       priceRangeFilter: {
@@ -56,39 +51,31 @@ class App extends React.Component {
       },
     }));
   };
+
   resetAllFilters = () => this.setState(defaultFilters);
 
   render() {
-    if (this.state.loading) {
+    const { restaurants, priceRangeFilter, nameFilter, loading } = this.state;
+
+    if (loading) {
       return <Loading />;
     }
-
-    const anyPriceSelected = Object.values(this.state.priceRangeFilter).some(f => f);
-    const restaurantsInPriceRange = anyPriceSelected
-      ? this.state.restaurants.filter(r => this.state.priceRangeFilter[r.priceRange])
-      : this.state.restaurants;
-
-    const filteredRestaurants = restaurantsInPriceRange.filter(
-      r =>
-        r.name.toLowerCase().includes(this.state.nameFilter.toLowerCase()) ||
-        r.description.toLowerCase().includes(this.state.nameFilter.toLowerCase()),
-    );
 
     return (
       <Router history={this.props.history || defaultHistory}>
         <MainColumn>
           <Filters
-            name={this.state.nameFilter}
-            priceRange={this.state.priceRangeFilter}
+            name={nameFilter}
+            priceRange={priceRangeFilter}
             setNameFilter={this.setNameFilter}
             setPriceRangeFilter={this.setPriceRangeFilter}
             resetAll={this.resetAllFilters}
           />
-          <CardContainer>
-            {filteredRestaurants.map(restaurant => (
-              <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-            ))}
-          </CardContainer>
+          <RestaurantList
+            restaurants={restaurants}
+            priceRangeFilter={priceRangeFilter}
+            nameFilter={nameFilter}
+          />
         </MainColumn>
       </Router>
     );
