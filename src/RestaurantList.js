@@ -12,13 +12,13 @@ const RestaurantList = ({ restaurants, priceRangeFilter, nameFilter }) => {
   const anyPriceSelected = Object.values(priceRangeFilter).some(f => f);
 
   const restaurantsInPriceRange = anyPriceSelected
-    ? restaurants.filter(r => priceRangeFilter[r.priceRange])
+    ? restaurants.filter(restaurant => priceRangeFilter[restaurant.priceRange])
     : restaurants;
 
   const filteredRestaurants = restaurantsInPriceRange.filter(
-    r =>
-      r.name.toLowerCase().includes(nameFilter.toLowerCase()) ||
-      r.description.toLowerCase().includes(nameFilter.toLowerCase()),
+    restaurant =>
+      restaurant.name.toLowerCase().includes(nameFilter.toLowerCase()) ||
+      restaurant.description.toLowerCase().includes(nameFilter.toLowerCase()),
   );
 
   return (
