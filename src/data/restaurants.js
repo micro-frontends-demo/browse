@@ -1,13 +1,15 @@
-const burger = 'http://localhost:5000/images/1-burger.jpg';
-const chickenRice = 'http://localhost:5000/images/2-chicken-rice.jpg';
-const pizza = 'http://localhost:5000/images/3-pizza.jpg';
-const satay = 'http://localhost:5000/images/4-satay.jpg';
-const curry = 'http://localhost:5000/images/5-curry.jpg';
-const sandwich = 'http://localhost:5000/images/6-sandwich.jpg';
-const paella = 'http://localhost:5000/images/7-paella.jpg';
-const friedChicken = 'http://localhost:5000/images/8-fried-chicken.jpg';
-const sushi = 'http://localhost:5000/images/9-sushi.jpg';
-const fishNChips = 'http://localhost:5000/images/10-fish-n-chips.jpg';
+const contentHost = process.env.REACT_APP_CONTENT_HOST;
+
+const burger = `${contentHost}/images/1-burger.jpg`;
+const chickenRice = `${contentHost}/images/2-chicken-rice.jpg`;
+const pizza = `${contentHost}/images/3-pizza.jpg`;
+const satay = `${contentHost}/images/4-satay.jpg`;
+const curry = `${contentHost}/images/5-curry.jpg`;
+const sandwich = `${contentHost}/images/6-sandwich.jpg`;
+const paella = `${contentHost}/images/7-paella.jpg`;
+const friedChicken = `${contentHost}/images/8-fried-chicken.jpg`;
+const sushi = `${contentHost}/images/9-sushi.jpg`;
+const fishNChips = `${contentHost}/images/10-fish-n-chips.jpg`;
 
 const restaurants = [
   {
@@ -92,6 +94,7 @@ const restaurants = [
   },
 ];
 
-const getRestaurants = () => new Promise(resolve => setTimeout(() => resolve(restaurants), 1000));
+const getRestaurants = () =>
+  new Promise(resolve => setTimeout(() => resolve(restaurants), 1000));
 
 export default getRestaurants;
