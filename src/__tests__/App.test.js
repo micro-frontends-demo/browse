@@ -2,14 +2,35 @@ import React from 'react';
 import { mount } from 'enzyme';
 import App from '../App';
 
-it('renders and filters the restaurants', async () => {
+it('shows an error if the restaurant data fails to load', async () => {
+  fetch.mockRejectOnce(new Error('Nope!'));
   const app = mount(<App />);
 
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  await new Promise(setTimeout);
   app.update();
 
-  // Initially we can see all 10 restaurants
-  expect(app.find('RestaurantCard')).toHaveLength(10);
+  expect(app).toIncludeText('unavailable');
+});
+
+it('renders and filters the restaurants', async () => {
+  const common = { imageSrc: '/', imageDescription: '', description: '' };
+  fetch.once(
+    JSON.stringify([
+      { id: '1', name: 'Fish and Chips', priceRange: '$', ...common },
+      { id: '2', name: 'Chicken Rice', priceRange: '$', ...common },
+      { id: '3', name: 'Fried Chicken', priceRange: '$$', ...common },
+    ]),
+  );
+  const app = mount(<App />);
+
+  // Initially the data is loading
+  expect(app).toIncludeText('Loading');
+
+  await new Promise(setTimeout);
+  app.update();
+
+  // Once it loads, we can see all 3 restaurants
+  expect(app.find('RestaurantCard')).toHaveLength(3);
 
   // There are 2 chicken restaurants
   app

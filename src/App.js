@@ -29,6 +29,7 @@ class App extends React.Component {
     this.state = {
       restaurants: [],
       loading: true,
+      error: false,
       ...defaultFilters,
     };
   }
@@ -45,6 +46,9 @@ class App extends React.Component {
           })),
           loading: false,
         });
+      })
+      .catch(() => {
+        this.setState({ loading: false, error: true });
       });
   }
 
@@ -62,10 +66,22 @@ class App extends React.Component {
   resetAllFilters = () => this.setState(defaultFilters);
 
   render() {
-    const { restaurants, priceRangeFilter, nameFilter, loading } = this.state;
+    const {
+      restaurants,
+      priceRangeFilter,
+      nameFilter,
+      loading,
+      error,
+    } = this.state;
 
     if (loading) {
       return <Loading />;
+    }
+
+    if (error) {
+      return (
+        <span>Sorry, but the restaurant list is unavailable right now</span>
+      );
     }
 
     return (
