@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link as RRLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Link = styled(RRLink)`
+const StyledLink = styled(Link)`
   color: inherit;
+  text-decoration: none;
 `;
 
 const Card = styled.div`
@@ -18,6 +19,7 @@ const CardTitleRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 const CardTitle = styled.h2`
@@ -39,14 +41,14 @@ const Description = styled.p`
 
 const RestaurantCard = ({ restaurant }) => (
   <Card>
-    <Link to={`/restaurant/${restaurant.id}`}>
+    <StyledLink to={`/restaurant/${restaurant.id}`}>
       <CardTitleRow>
         <CardTitle>{restaurant.name}</CardTitle>
         <PriceRange>{restaurant.priceRange}</PriceRange>
       </CardTitleRow>
       <Img src={restaurant.imageSrc} alt={restaurant.imageDescription} />
       <Description>{restaurant.description}</Description>
-    </Link>
+    </StyledLink>
   </Card>
 );
 

@@ -10,7 +10,6 @@ import getRestaurants from './data/restaurants';
 const MainColumn = styled.div`
   max-width: 1150px;
   margin: 0 auto;
-  padding: 20px;
 `;
 
 const defaultFilters = {
