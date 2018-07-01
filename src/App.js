@@ -80,7 +80,9 @@ class App extends React.Component {
 
     if (error) {
       return (
-        <span>Sorry, but the restaurant list is unavailable right now</span>
+        <MainColumn>
+          Sorry, but the restaurant list is unavailable right now
+        </MainColumn>
       );
     }
 
