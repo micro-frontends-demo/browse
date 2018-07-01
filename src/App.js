@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Loading from './Loading';
 import Filters from './Filters';
 import RestaurantList from './RestaurantList';
-import getRestaurants from './data/restaurants';
 
 const MainColumn = styled.div`
   max-width: 1150px;
@@ -35,9 +34,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    getRestaurants().then(restaurants => {
-      this.setState({ restaurants, loading: false });
-    });
+    const host = process.env.REACT_APP_CONTENT_HOST;
+    fetch(`${host}/restaurants.json`)
+      .then(result => result.json())
+      .then(restaurants => {
+        this.setState({
+          restaurants: restaurants.map(r => ({
+            ...r,
+            imageSrc: `${host}${r.imageSrc}`,
+          })),
+          loading: false,
+        });
+      });
   }
 
   setNameFilter = value => this.setState({ nameFilter: value });
