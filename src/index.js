@@ -11,3 +11,7 @@ window.renderBrowse = (containerId, history) => {
   );
   unregister();
 };
+
+window.unmountBrowse = containerId => {
+  ReactDOM.unmountComponentAtNode(document.getElementById(containerId));
+};
