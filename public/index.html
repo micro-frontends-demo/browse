@@ -15,14 +15,9 @@
     </noscript>
     <main id="container"></main>
     <script type="text/javascript">
-      function tryRender() {
-        if (window.renderBrowse) {
-          window.renderBrowse('container');
-        } else {
-          setTimeout(tryRender, 100);
-        }
-      }
-      tryRender();
+      window.onload = () => {
+        window.renderBrowse('container');
+      };
     </script>
   </body>
 </html>
