@@ -40,9 +40,9 @@ class App extends React.Component {
       .then(result => result.json())
       .then(restaurants => {
         this.setState({
-          restaurants: restaurants.map(r => ({
-            ...r,
-            imageSrc: `${host}${r.imageSrc}`,
+          restaurants: restaurants.map(restaurant => ({
+            ...restaurant,
+            imageSrc: `${host}${restaurant.imageSrc}`,
           })),
           loading: false,
         });
