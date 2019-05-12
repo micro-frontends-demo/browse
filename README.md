@@ -1,5 +1,7 @@
 # Browse restaurants
 
+[![Build Status](https://travis-ci.org/micro-frontends-demo/browse.svg?branch=master)](https://travis-ci.org/micro-frontends-demo/browse)
+
 A micro frontend for browsing restaurants.
 
 # Getting started
